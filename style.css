@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body {
+    background: linear-gradient(#FFA500, #FFFF00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+}
+
+.login_container {
+    height: 500px;
+    width: 400px;
+    margin: 0 10px 0 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+}
+
+.login_container:before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+}
+
+.login_container h2 {
+    position: absolute;
+    font-size: 35px;
+    font-weight: bold;
+    top: 50px;
+}
+
+.login_container h3 {
+    font-size: 20px;
+    color: red;
+    position: absolute;
+    bottom: 300px;
+}
+
+.login_container a {
+    position: absolute;
+    bottom: 25px;
+    text-decoration: none;
+    color: black;
+    background: white;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.login_container a:visited {
+    color: black;
+}
+
+.login_container label {
+    margin: 20px 0 20px;
+    border-radius: 10px;
+    padding: 2px 2px 2px 5px;
+    background-color: white;
+    display: flex;
+}
+
+.login_container input {
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+}
+
+.login_container input:focus {
+    outline: none;
+}
+
+.login_container .submit {
+    padding: 4px 7px 4px 7px;
+    font-size: 16px;
+    position: relative;
+    top: 20px;
+}
+
+.deregister {
+    background: transparent;
+    border-radius: 10px;
+    padding: 5px;
+}
