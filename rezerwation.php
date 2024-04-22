@@ -12,13 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $godzina = $_POST['time'];
     $liczba_osob = $_POST['party-size'];
 
-    $query = "SELECT stolikiID FROM stoliki WHERE stolikiID NOT IN (SELECT stolikiID FROM rezerwacje WHERE data = '$data' AND godzina_rezerwacji = '$godzina') LIMIT 1";
-    $result = $mysqli->query($query);
+    // Wywołanie procedury przechowywanej
+    $stmt = $mysqli->prepare("CALL FindAvailableTable(?, ?, ?, @stolikID)");
+    $stmt->bind_param("ssi", $data, $godzina, $liczba_osob);
+    $stmt->execute();
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $stolikID = $row['stolikiID'];
+    // Pobranie wartości zmiennych wynikowych
+    $result = $mysqli->query("SELECT @stolikID AS stolikID");
+    $row = $result->fetch_assoc();
+    $stolikID = $row['stolikID'];
 
+    if ($stolikID) {
         $insert_query = "INSERT INTO rezerwacje (data, godzina_rezerwacji, liczba_osob, stolikiID, userID) VALUES ('$data', '$godzina', $liczba_osob, $stolikID, {$_SESSION['userID']})";
         if ($mysqli->query($insert_query) === TRUE) {
             echo "Stolik został zarezerwowany pomyślnie!";

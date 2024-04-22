@@ -71,16 +71,15 @@
                 <form method="post" action="rezerwation.php">
                     <div class="form-group">
                         <label for="date">Data:</label>
-                        <input type="date" id="date" name="date" class="form-control" required>
+                        <input type="date" id="date" name="date" class="form-control" required min="<?php echo date('Y-m-d'); ?>">
                     </div>
                     <div class="form-group">
                         <label for="time">Godzina:</label>
-                        <input type="time" id="time" name="time" class="form-control" required step="3600">
+                        <input type="time" id="time" name="time" class="form-control" required step="3600" min="10:00" max="20:00">
                     </div>
-
                     <div class="form-group">
                         <label for="party-size">Liczba osób:</label>
-                        <input type="number" id="party-size" name="party-size" class="form-control" min="1" required>
+                        <input type="number" id="party-size" name="party-size" class="form-control" min="1" max="6" required>
                     </div>
                     <button type="submit" class="btn btn-warning">Zarezerwuj</button>
                 </form>
